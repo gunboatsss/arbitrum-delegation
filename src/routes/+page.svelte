@@ -2,7 +2,7 @@
     export let title = "SNX Ambassadors: Arbitrum Delegation";
 
     import { ethers } from "ethers";
-    import { ArbitrumTokenABI, TokenDistributorABI } from "$lib/abi.js";
+    import { ArbitrumTokenABI } from "$lib/abi.js";
     import {
         chainId,
         contracts,
@@ -13,7 +13,6 @@
     import { onMount } from "svelte";
     const ARBITRUM_ONE_CHAINID = 42161;
     const AMBASSADORS_ADDRESS = "0xf18E9799ef294079ec3C312f8940741f0A03d952";
-    const unsub = 
     defaultEvmStores.attachContract(
         "ArbitrumToken",
         "0x912CE59144191C1204E64559FE8253a0e49E6548",
@@ -26,13 +25,7 @@
             new ethers.providers.InfuraProvider(ARBITRUM_ONE_CHAINID),
             null
         );
-    }
-    async function getVotes() {
-        let power = await $contracts.ArbitrumToken.getVotes(
-            AMBASSADORS_ADDRESS
-        );
-        return ethers.utils.formatEther(power);
-    }
+    };
     onMount(() => {
         reset();
     });
@@ -98,12 +91,14 @@
     {:else}
         <span>Connect your wallet to continue</span>
     {/if}
+    {#await new Promise(resolve => setTimeout(resolve, 1000)) then something}  
     <p>
         Current Ambassadors Power:
-        {#await getVotes()}
-            ...
-        {:then power}
-            {power}
+        {#await $contracts.ArbitrumToken.getVotes(AMBASSADORS_ADDRESS)}
+        ...
+        {:then value}
+        {ethers.utils.formatEther(value)}
         {/await}
     </p>
+    {/await}
 </div>
