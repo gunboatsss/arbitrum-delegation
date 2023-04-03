@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: bold;
+    font-weight: 700;
+    src: local(''), url('/RobotoCondensed-Bold.woff') format('woff');
+}
+@font-face {
+    font-family: "Prompt";
+    font-style: normal;
+    font-weight: 400;
+    src: local('') url('/Prompt-Medium.woff') format('woff');
+}
+
+html {
+    min-height: 100%;
+    min-width: 100%;
+}
+
+body {
+    background: linear-gradient(to bottom, #161b44 0%, #0c2344 100%);
+    border: 1px solid white;
+    color: #FFF;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #FFF;
+    border-bottom: 0.01em white solid;
+}
+
+header span {
+    margin-left: auto;
+}
+
+h1 {
+    font-family: "Roboto Condensed", Impact, sans-serif;
+    font-size: 3.5em;
+}
+
+div #body {
+    font-family: "Prompt", Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    padding: 1%;
+    flex-wrap: wrap;
+}
+button {
+    color: white;
+    background-color: #0e052f;
+    font: 1em "Prompt", Arial, Helvetica, sans-serif;
+    margin: 5px;
+    padding: 1em 0.5em;
+    border: none;
+    border-radius: 5%;
+}
