@@ -22,6 +22,7 @@
         max-width: 640px;
         flex-direction: column;
         display: inline-flex;
+        margin: 0 auto 5px;
     }
     label {
         font-size: 0.9em;
@@ -29,7 +30,7 @@
     }
     input {
         text-align: center;
-        padding-right: 15px;
+        padding-right: 15px;    
         text-align: right;
         font-family: monospace;
         font-size: 1.5em;

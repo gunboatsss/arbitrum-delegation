@@ -39,9 +39,8 @@
     defaultEvmStores.attachContract(
         "ArbitrumToken",
         "0x912CE59144191C1204E64559FE8253a0e49E6548",
-        ArbitrumTokenABI,
-        false
-    );
+        ArbitrumTokenABI
+        );
     let initalized = false;
     let correctChain = false, signedIn = false;
     chainId.subscribe(value => {
@@ -51,13 +50,13 @@
         signedIn = value !== undefined
         console.log($signerAddress);
     });
-    onMount(() => {
-        const unwatch = watchSigner({}, async (signer) => {
+    const unwatch = watchSigner({}, async (signer) => {
             if (signer !== null) {
                 console.debug(signer);
                 defaultEvmStores.setProvider(signer.provider);
             }
         });
+    onMount(() => {
         initalized = true;
     });
 </script>
@@ -92,11 +91,16 @@
                         >
                     {:else}
                         <span>
-                            You are delegated to: {delegate}
+                            {#if delegate !== ethers.constants.AddressZero}
+                                You are delegated to: {delegate}
+                            {:else}
+                                You haven't delegate to anyone yet
+                            {/if}
                             <button
                                 on:click={() => {
                                     $contracts.ArbitrumToken.delegate(
-                                        AMBASSADORS_ADDRESS
+                                        AMBASSADORS_ADDRESS,
+                                        
                                     );
                                 }}>Delegate to Ambassadors</button
                             >
